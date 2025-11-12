@@ -319,15 +319,29 @@ WHERE CUST_COUNTRY NOT IN ('India','USA');
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to remove rows from the table 'customer' with the following condition -
+
+1. 'cust_country' must be 'India',
+
+2. 'cus_city' must not be 'Chennai',
+
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
 
 ```sql
--- Paste your SQL code below for Question 8
+DELETE FROM customer
+Where cust_country = 'India' AND cust_city <> 'Chennai';
 ```
 
 **Output:**
+![Uploading image.png…]()
 
-![Output8](output.png)
 
 **Question 9**
 ---
