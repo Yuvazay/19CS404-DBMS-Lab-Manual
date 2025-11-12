@@ -105,87 +105,217 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+-- For  Increase the selling price per unit by 3 for all products supplied by supplier ID 4 in the sales table.
+
+PRODUCTS TABLE
+
+name               type
+-----------------  ---------------
+product_id         INT
+product_name       VARCHAR(100)
+category           VARCHAR(50)
+cost_price         DECIMAL(10,2)
+sell_price         DECIMAL(10,2)
+reorder_lvl        INT
+quantity           INT
+supplier_id        INT
+
+SALES TABLE
+name               type
+-----------------  ---------------
+sale_id            INT
+sale_date          DATE
+product_id         INT
+quantity           INT
+sell_price         DECIMAL(10,2)
+total_sell_price   DECIMAL(10,2)
+For example:
+
+Test	Result
+select changes();
+changes()
+----------
+1
+
 
 ```sql
--- Paste your SQL code below for Question 1
+UPDATE sales
+SET sell_price = sell_price + 3
+WHERE product_id IN (
+SELECT product_id
+FROM products
+WHERE supplier_id=4
+
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1339" height="209" alt="image" src="https://github.com/user-attachments/assets/f2e15ad6-131c-4ca6-8db9-6a8e144f06dd" />
+
 
 **Question 2**
 ---
--- Paste Question 2 here
+Write a SQL statement to Increase the selling price by 10% for all products in the 'Bakery' category in the products table.
+
+Products table
+
+---------------
+product_id
+product_name
+category
+cost_price
+sell_price
+reorder_lvl
+quantity
+supplier_id
 
 ```sql
--- Paste your SQL code below for Question 2
+UPDATE products
+SET sell_price = sell_price * 1.10
+WHERE category = 'Bakery';
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1342" height="314" alt="image" src="https://github.com/user-attachments/assets/f74ff625-50c7-4568-89f7-08e6357862d7" />
+
 
 **Question 3**
 ---
--- Paste Question 3 here
+Write a SQL statement to Update the hire_date of employees in department 50 to 2024-01-24.
+
+Employees table
+
+---------------
+employee_id
+first_name
+last_name
+email
+phone_number
+hire_date
+job_id
+salary
+commission_pct
+manager_id
+department_id
+For example:
+
+Test	Result
+SELECT EMPLOYEE_ID, FIRST_NAME, HIRE_DATE FROM EMPLOYEES 
+WHERE DEPARTMENT_ID=50 LIMIT 3;
+EMPLOYEE_ID  FIRST_NAME  HIRE_DATE
+-----------  ----------  ----------
+120          Matthew     2024-01-24
+121          Adam        2024-01-24
+122          Payam       2024-01-24
+
 
 ```sql
--- Paste your SQL code below for Question 3
+UPDATE Employees
+SET hire_date ='2024-01-24'
+WHERE department_id = 50;
 ```
 
 **Output:**
 
-![Output3](output.png)
+
 
 **Question 4**
 ---
--- Paste Question 4 here
+Write a SQL statement to Increase the selling price per unit by 5% for product ID 15 who's sale is on '2023-01-31'.
+
+sales(sale_id,sale_date,product_id,quantity,sell_price,total_sell_price)
+
+For example:
+
+Test	Result
+select changes();
+changes()
+----------
+3
+
 
 ```sql
--- Paste your SQL code below for Question 4
+UPDATE sales
+SET sell_price = sell_price * 1.05
+WHERE product_id = 15 AND sale_date = '2023-01-31';
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1210" height="313" alt="image" src="https://github.com/user-attachments/assets/bb5a2770-64bd-4944-be8d-fd6769161e72" />
+
 
 **Question 5**
 ---
--- Paste Question 5 here
+Write a SQL statement to double the availability of the product with product_id 1.
+
+products table
+
+---------------
+product_id
+product_name
+category_id
+availability
 
 ```sql
--- Paste your SQL code below for Question 5
+UPDATE products
+SET availability = availability * 2
+WHERE product_id = 1;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1172" height="178" alt="image" src="https://github.com/user-attachments/assets/7bfac853-628d-4142-9567-6f2aad2f7b3b" />
+
 
 **Question 6**
 ---
--- Paste Question 6 here
+Write a SQL query to delete a doctor from Doctors table whose Specialization is 'Pediatrics' and First name is 'Michael'.
+
+Sample table: Doctors
+
+attributes : doctor_id, first_name, last_name, specialization
 
 ```sql
--- Paste your SQL code below for Question 6
+DELETE FROM Doctors Where specialization = 'Pediatrics' AND first_name = 'Michael';
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="778" height="223" alt="image" src="https://github.com/user-attachments/assets/64cd497d-5169-47b1-b982-12dc41dbc441" />
+
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL query to Delete customers from 'customer' table where 'CUST_COUNTRY' is neither 'India' nor 'USA'.
+
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
+For example:
+
+Test	Result
+select changes();
+changes()
+----------
+11
+
 
 ```sql
--- Paste your SQL code below for Question 7
+DELETE FROM customer
+WHERE CUST_COUNTRY NOT IN ('India','USA');
 ```
 
 **Output:**
+<img width="1343" height="364" alt="image" src="https://github.com/user-attachments/assets/1af46be4-b7c3-445e-a0f5-664bf9ad3d84" />
 
-![Output7](output.png)
 
 **Question 8**
 ---
@@ -201,27 +331,54 @@ CREATE TABLE Table_Name (
 
 **Question 9**
 ---
--- Paste Question 9 here
+Write a SQL query to delete a doctor from Doctors table whos specialization is 'Cardiology'
+
+Sample table: Doctors
+
+attributes : doctor_id, first_name, last_name, specialization
+Answer:(penalty regime: 0 %)
 
 ```sql
--- Paste your SQL code below for Question 9
+DELETE FROM Doctors WHERE specialization = 'Cardiology';
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="749" height="224" alt="image" src="https://github.com/user-attachments/assets/085f0667-346a-4e48-a80c-d28a518be881" />
+
 
 **Question 10**
 ---
--- Paste Question 10 here
+Write a SQL query to Delete customers with following conditions
+
+'CUST_COUNTRY' is not in a list of specified countries ('UK', 'USA', 'Canada')
+'GRADE' is greater than or equal to 3
+Sample table: Customer
+
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+  
+|CUST_CODE  | CUST_NAME   | CUST_CITY   | WORKING_AREA | CUST_COUNTRY | GRADE | OPENING_AMT | RECEIVE_AMT | PAYMENT_AMT |OUTSTANDING_AMT| PHONE_NO     | AGENT_CODE |
++-----------+-------------+-------------+--------------+--------------+-------+-------------+-------------+-------------+---------------+--------------+------------+
+| C00013    | Holmes      | London      | London       | UK           |     2 |     6000.00 |     5000.00 |     7000.00 |       4000.00 | BBBBBBB      | A003       |
+| C00001    | Micheal     | New York    | New York     | USA          |     2 |     3000.00 |     5000.00 |     2000.00 |       6000.00 | CCCCCCC      | A008       |
+| C00020    | Albert      | New York    | New York     | USA          |     3 |     5000.00 |     7000.00 |     6000.00 |       6000.00 | BBBBSBB      | A008       |
+For example:
+
+Test	Result
+select changes();
+changes()
+----------
+2
+
 
 ```sql
--- Paste your SQL code below for Question 10
+DELETE FROM Customer
+Where CUST_COUNTRY NOT IN ('UK','USA','Canada')AND GRADE >=3;
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1345" height="261" alt="image" src="https://github.com/user-attachments/assets/df4d5c69-60d5-4fe3-9634-f643f6f97cbe" />
+
 
 
 ## RESULT
